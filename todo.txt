@@ -1,0 +1,10 @@
+load flatlist one by one
+Async await errors:
+- catch network error
+- catch movies not found error
+
+spinner
+
+keyextractor in flatlists
+
+movie details page
