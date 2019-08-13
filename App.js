@@ -2,12 +2,14 @@ import React from 'react';
 import { StyleSheet,  } from 'react-native';
 import {createStackNavigator, createAppContainer} from 'react-navigation'
 import HomeScreen from './screens/HomeScreen'
+import SearchResultsScreen from './screens/SearchResultsScreen'
+import MovieDetailsScreen from './screens/MovieDetailsScreen'
 
 const AppNavigator = createStackNavigator (
   {
     Home: HomeScreen, 
-    SearchResults: "SearchResultsScreen",
-    // MovieDetails: "MovieDetailsScreen",
+    SearchResults: SearchResultsScreen,
+    MovieDetails: MovieDetailsScreen,
   },
   {
     initialRouteName: "Home",

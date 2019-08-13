@@ -1,23 +1,25 @@
 import React from 'react'
-import {FlatList,Image, View, Text, StyleSheet} from 'react-native'
+import {FlatList,TouchableOpacity,Image, View, Text, StyleSheet} from 'react-native'
 
 
 const TopMoviesList = props => {
   const renderItem = (obj) => (
-    <View style = {styles.row}>
-      <Image
-          style={{width: 120, height: 120}}
-          source={{uri: obj.item.Poster}}
-      />
-      <View style = {styles.textBox}>
-        <View style = {{flexDirection:"row"}}>
-          <Text style={styles.titleText}>{obj.item.Title}</Text>
-        </View>
-        <View style = {{marginTop:10, flex:1, flexDirection:"row", }}>
-          <Text style = {{fontWeight: "bold", fontSize:16,}}>Year: </Text><Text style = {{fontSize:16,}}>{obj.item.Year}</Text>
+    <TouchableOpacity onPress = {props.showMovieDetails}>
+      <View style = {styles.row}>
+        <Image
+            style={{width: 120, height: 120}}
+            source={{uri: obj.item.Poster}}
+        />
+        <View style = {styles.textBox}>
+          <View style = {{flexDirection:"row"}}>
+            <Text style={styles.titleText}>{obj.item.Title}</Text>
+          </View>
+          <View style = {{marginTop:10, flex:1, flexDirection:"row", }}>
+            <Text style = {{fontWeight: "bold", fontSize:16,}}>Year: </Text><Text style = {{fontSize:16,}}>{obj.item.Year}</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 
   return (

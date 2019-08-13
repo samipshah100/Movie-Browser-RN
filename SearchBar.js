@@ -1,16 +1,32 @@
 import React from 'react'
 import {TextInput,KeyboardAvoidingView, StyleSheet} from 'react-native'
 
-const SearchBar = props => (
-  <KeyboardAvoidingView style = {styles.inputContainer}>
-    <TextInput 
-      value = {props.searchQuery}
-      style = {styles.input}
-      onChangeText = {props.onChangeText}
-      placeholder = "Search a movie ..."
-    />
-  </KeyboardAvoidingView>
-)
+// returns a search string to HomeScreen. Input is NOT sanitized because of using OMDB API.
+
+export default class SearchBar extends React.Component {
+
+  constructor (props) {
+    super(props)
+    this.state = {
+      searchText: "",
+    }
+
+  }
+
+  render() {
+    return  (
+      <KeyboardAvoidingView style = {styles.inputContainer}>
+        <TextInput 
+          style = {styles.input}
+          onChangeText = {text => this.setState({searchText: text,})}
+          value = {this.state.searchText}
+          placeholder = "Search a movie ..."
+          onSubmitEditing = {event => (this.props.formSubmitted(event.nativeEvent.text))}
+        />
+      </KeyboardAvoidingView>
+    )
+  }
+}
 
 const styles = StyleSheet.create(
   {
@@ -32,6 +48,5 @@ const styles = StyleSheet.create(
     },
   }
 )
-export default SearchBar
 
 
