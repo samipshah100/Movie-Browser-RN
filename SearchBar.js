@@ -21,7 +21,7 @@ export default class SearchBar extends React.Component {
           onChangeText = {text => this.setState({searchText: text,})}
           value = {this.state.searchText}
           placeholder = "Search a movie ..."
-          onSubmitEditing = {event => (this.props.formSubmitted(event.nativeEvent.text))}
+          onSubmitEditing = {event => (this.props.formSubmitted(event.nativeEvent.text.trim()))}
         />
       </KeyboardAvoidingView>
     )
