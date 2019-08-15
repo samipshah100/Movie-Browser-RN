@@ -8,6 +8,7 @@ import TopMoviesList from '../TopMoviesList'
 var totalResultPages = 0
 var searchResultsArr = []
 var flatListArr = []
+var i =1
 
 export default class SearchResultsScreen extends React.Component {
   state = {
@@ -57,6 +58,17 @@ export default class SearchResultsScreen extends React.Component {
       })
   }
 
+  addIndex = (searchArr) => {
+    var searchWithIndex = searchArr.map(
+      (obj) => {
+        let rObj = { i:i.toString(), ...obj }
+        i++
+        return rObj
+      }
+    )
+    return searchWithIndex
+  }
+
   // SearchBar submissions will be processed here. 
 
   handlePageDisplay = (pageNum) => {
@@ -70,7 +82,7 @@ export default class SearchResultsScreen extends React.Component {
         )
         .then(
           responseObj => {
-            currentPageResults = responseObj.Search
+            currentPageResults = this.addIndex(responseObj.Search)
             this.setState(
               {
                 moviesListArr: [...this.state.moviesListArr, ...currentPageResults],

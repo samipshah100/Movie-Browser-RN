@@ -27,7 +27,7 @@ const TopMoviesList = props => {
     renderItem = {renderItem}
     data = {props.moviesList}
     onEndReached = {props.onEndReached}
-    keyExtractor = {(item, index) => item.imdbID}
+    keyExtractor = {(item, index) => item.i}
   />
   )
 }

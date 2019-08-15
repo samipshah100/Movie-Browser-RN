@@ -4,9 +4,10 @@ import { search, movie } from '../mockData'
 import SearchBar from '../SearchBar'
 import TopMoviesList from '../TopMoviesList'
 import SearchResultsScreen from './SearchResultsScreen';
-import {API_KEY} from '../ApiKey'
+import { API_KEY } from '../ApiKey'
 
 var data = "failed"
+var i = 1
 
 export default class HomeScreen extends React.Component {
   state = {
@@ -21,7 +22,19 @@ export default class HomeScreen extends React.Component {
   }
 
   formSubmitted = (q) => {
-    this.props.navigation.navigate('SearchResults', {q: q} )
+    this.props.navigation.navigate('SearchResults', { q: q })
+  }
+
+  addIndex = (searchArr) => {
+    var searchWithIndex = searchArr.map(
+      (obj) => {
+
+        let rObj = { i: i.toString(), ...obj }
+        i++
+        return rObj
+      }
+    )
+    return searchWithIndex
   }
 
   render() {
@@ -32,7 +45,7 @@ export default class HomeScreen extends React.Component {
         <Text style={styles.heading}>Top Movies</Text>
         <TopMoviesList
           // moviesList = {JSON.stringify(search)}
-          moviesList={search.Search}
+          moviesList={this.addIndex(search.Search)}
         // moviesList = {[{"Title":"Star Wars: Episode IV - A New Hope","Year":"1977","imdbID":"tt0076759","Type":"movie","Poster":"https://images-na.ssl-images-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"}]}
         />
 
