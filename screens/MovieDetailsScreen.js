@@ -3,6 +3,8 @@ import { Text, View, StyleSheet } from 'react-native'
 import {search, movie } from '../mockData'
 import SearchBar from '../SearchBar'
 import TopMoviesList from '../TopMoviesList'
+import {API_KEY} from '../ApiKey'
+
 
 export default class SearchResultsScreen extends React.Component {
   state = {
@@ -21,11 +23,10 @@ export default class SearchResultsScreen extends React.Component {
       <View style={styles.container}>
         <Text style={styles.heading}>Top Movies</Text>
         <Text>
-        {/* <TopMoviesList 
-          // moviesList = {JSON.stringify(search)}
-          moviesList = {movieList.Search}
-          // moviesList = {[{"Title":"Star Wars: Episode IV - A New Hope","Year":"1977","imdbID":"tt0076759","Type":"movie","Poster":"https://images-na.ssl-images-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"}]}
-        /> */
+        <TopMoviesList 
+          // moviesList = {movieList.Search}
+          moviesList = {[{"Title":"Star Wars: Episode IV - A New Hope","Year":"1977","imdbID":"tt0076759","Type":"movie","Poster":"https://images-na.ssl-images-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"}]}
+        /> 
         this.props.navigation.getParam('totalResults')
         }</Text>
 

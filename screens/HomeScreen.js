@@ -4,6 +4,7 @@ import { search, movie } from '../mockData'
 import SearchBar from '../SearchBar'
 import TopMoviesList from '../TopMoviesList'
 import SearchResultsScreen from './SearchResultsScreen';
+import {API_KEY} from '../ApiKey'
 
 var data = "failed"
 
