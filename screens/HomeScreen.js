@@ -19,6 +19,7 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     headerTitle: "Browse Movies",
     headerTintColor: "dodgerblue",
+    // header: null,
   }
 
   formSubmitted = (q) => {
@@ -28,7 +29,6 @@ export default class HomeScreen extends React.Component {
   addIndex = (searchArr) => {
     var searchWithIndex = searchArr.map(
       (obj) => {
-
         let rObj = { i: i.toString(), ...obj }
         i++
         return rObj
@@ -36,6 +36,19 @@ export default class HomeScreen extends React.Component {
     )
     return searchWithIndex
   }
+
+  // showMovieDetails = (id) => {
+  //   fetch(`http://www.omdbapi.com/?i='tt0120915'&apikey=${API_KEY}}`)
+  //   .then(
+  //     response => response.json()
+  //   )
+  //   .then(
+  //     responseObj => {
+  //       let a = responseObj.Title
+  //       debugger
+  //     }
+  //   )
+  // }
 
   render() {
 
@@ -46,10 +59,9 @@ export default class HomeScreen extends React.Component {
         <TopMoviesList
           // moviesList = {JSON.stringify(search)}
           moviesList={this.addIndex(search.Search)}
+          navigation = {this.props.navigation}
         // moviesList = {[{"Title":"Star Wars: Episode IV - A New Hope","Year":"1977","imdbID":"tt0076759","Type":"movie","Poster":"https://images-na.ssl-images-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"}]}
         />
-
-
       </View>
 
     )

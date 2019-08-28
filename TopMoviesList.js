@@ -1,10 +1,20 @@
 import React from 'react'
 import {FlatList,TouchableOpacity,Image, View, Text, StyleSheet} from 'react-native'
+import {MovieDetailsScreen} from './screens/MovieDetailsScreen'
 
 
-const TopMoviesList = props => {
-  const renderItem = (obj) => (
-    <TouchableOpacity onPress = {props.showMovieDetails}>
+export default class TopMoviesList extends React.Component {
+  
+  state = {}
+
+  showMovieDetails = (imdbID) => {
+    
+    this.props.navigation.navigate("MovieDetails", {imdbID: imdbID})
+  }
+  
+  renderItem = (obj) => (
+    // <TouchableOpacity onPress = {this.props.navigate.navigate("MovieDetails", {imdbID: obj.item.imdbID})}>
+    <TouchableOpacity onPress = {() =>(this.showMovieDetails( obj.item.imdbID))}>
       <View style = {styles.row}>
         <Image
             style={{width: 120, height: 120}}
@@ -22,16 +32,17 @@ const TopMoviesList = props => {
     </TouchableOpacity>
   )
 
-  return (
-  <FlatList style = {styles.container}
-    renderItem = {renderItem}
-    data = {props.moviesList}
-    onEndReached = {props.onEndReached}
-    keyExtractor = {(item, index) => item.i}
-  />
-  )
+  render () {
+    return (
+    <FlatList style = {styles.container}
+      renderItem = {this.renderItem}
+      data = {this.props.moviesList}
+      onEndReached = {this.props.onEndReached}
+      keyExtractor = {(item, index) => item.i}
+    />
+    )
+  }
 }
-
 const styles = StyleSheet.create(
   {
     container:  {
@@ -62,6 +73,6 @@ const styles = StyleSheet.create(
     }
   }
 )
-export default TopMoviesList
+// export default TopMoviesList
 
 

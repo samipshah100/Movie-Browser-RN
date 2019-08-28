@@ -1,3 +1,16 @@
-keyextractor in flatlists
-movie details page
-spinner
+1. fetch homescreen results using thunk and save in store
+2. display homescreen using store props
+
+------------------
+REDUX obj
+1. provide state
+2. provide dispatch function for : 
+=== fetching data
+=== storing data in state
+
+SCREENS
+1. homescreen
+2. search results screen
+3. movie details screen
+
+

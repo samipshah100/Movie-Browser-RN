@@ -21,7 +21,7 @@ export default class SearchResultsScreen extends React.Component {
 
   static navigationOptions = {
     headerTitle: "Search Results",
-    headerTintColor: "dodgerblue",
+    // headerMode: null,
   }
 
   componentDidMount() {
@@ -83,6 +83,12 @@ export default class SearchResultsScreen extends React.Component {
         .then(
           responseObj => {
             currentPageResults = this.addIndex(responseObj.Search)
+            //responseObj is a JSON object with the following keys:
+            /* 
+            - Response: "True" or "False" string based on if movie found
+            - Search: Object array with the 10 results
+            - totalResults: "43" string with number of total movies found. 
+            */
             this.setState(
               {
                 moviesListArr: [...this.state.moviesListArr, ...currentPageResults],
@@ -116,6 +122,18 @@ export default class SearchResultsScreen extends React.Component {
     // this.handlePageDisplay()
   }
 
+  // showMovieDetails = (id) => {
+  //   fetch(`http://www.omdbapi.com/?i=${tt0120915}&apikey={API_KEY}}`)
+  //   .then(
+  //     response => response.json()
+  //   )
+  //   .then(
+  //     responseObj => {
+  //       let a = responseObj.Title
+  //       debugger
+  //     }
+  //   )
+  // }
 
   render() {
     return (
@@ -124,6 +142,8 @@ export default class SearchResultsScreen extends React.Component {
         <TopMoviesList
           moviesList={this.state.moviesListArr}
           onEndReached={this.handleScrolling}
+          navigation = {this.props.navigation}
+          // showMovieDetails = {this.showMovieDetails('tt0120915')}
 
         //moviesList takes an OBJECT ARRAY ^
         // moviesList={[{ "Title": "Star Wars: Episode IV - A New Hope", "Year": "1977", "imdbID": "tt0076759", "Type": "movie", "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg" }]}
