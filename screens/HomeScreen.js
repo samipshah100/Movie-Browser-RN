@@ -1,15 +1,22 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
+
 import { search, movie } from '../mockData'
 import SearchBar from '../SearchBar'
 import TopMoviesList from '../TopMoviesList'
-import SearchResultsScreen from './SearchResultsScreen';
+import SearchResultsScreen from './SearchResultsScreen'
 import { API_KEY } from '../ApiKey'
+
+import { fetchTopMovies } from '../redux/actions'
+
+import { connect } from 'react-redux'
+
+const harryPotter = 'harry+potter'
 
 var data = "failed"
 var i = 1
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   state = {
     search: search,
     dataString: "",
@@ -22,8 +29,12 @@ export default class HomeScreen extends React.Component {
     // header: null,
   }
 
-  formSubmitted = (q) => {
-    this.props.navigation.navigate('SearchResults', { q: q })
+  componentDidMount() {
+    this.props.fetchTopMovies(harryPotter)
+  }
+
+  searchBarUpdated = () => {
+    this.props.navigation.navigate('SearchResults')
   }
 
   addIndex = (searchArr) => {
@@ -51,17 +62,17 @@ export default class HomeScreen extends React.Component {
   // }
 
   render() {
-
     return (
       <View style={styles.container}>
-        <SearchBar formSubmitted={this.formSubmitted} />
+        <SearchBar searchBarUpdated={this.searchBarUpdated} />
         <Text style={styles.heading}>Top Movies</Text>
         <TopMoviesList
-          // moviesList = {JSON.stringify(search)}
-          moviesList={this.addIndex(search.Search)}
-          navigation = {this.props.navigation}
+          moviesList={this.props.homeMoviesList}
+          navigation={this.props.navigation}
+          endReached={true}
         // moviesList = {[{"Title":"Star Wars: Episode IV - A New Hope","Year":"1977","imdbID":"tt0076759","Type":"movie","Poster":"https://images-na.ssl-images-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"}]}
         />
+
       </View>
 
     )
@@ -81,3 +92,14 @@ const styles = StyleSheet.create(
     },
   }
 )
+
+const mapStateToProps = state => ({
+  homeMoviesList: state.home.homeMoviesList,
+})
+
+// const mapDispatchToProps = state => ({
+//   fetchTopMovies: fetchTopMovies
+
+// })
+
+export default connect(mapStateToProps, { fetchTopMovies })(HomeScreen)

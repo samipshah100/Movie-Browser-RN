@@ -34,12 +34,20 @@ export default class TopMoviesList extends React.Component {
 
   render () {
     return (
-    <FlatList style = {styles.container}
-      renderItem = {this.renderItem}
-      data = {this.props.moviesList}
-      onEndReached = {this.props.onEndReached}
-      keyExtractor = {(item, index) => item.i}
-    />
+      <View style={{flex:1}}>
+        <View style={{flex:0.9}}>
+          <FlatList style = {styles.container}
+            renderItem = {this.renderItem}
+            data = {this.props.moviesList}
+            onEndReached = {this.props.onEndReached}
+            onEndReachedThreshold = {0.1}
+            keyExtractor = {(item, index) => index}
+          />
+        </View>
+        <View style={{flex:0.1}}>
+          {this.props.endReached && <Text> End of results. </Text>}
+        </View>
+      </View>
     )
   }
 }

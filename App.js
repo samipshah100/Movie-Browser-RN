@@ -4,16 +4,22 @@ import { createStackNavigator, createAppContainer } from 'react-navigation'
 import HomeScreen from './screens/HomeScreen'
 import SearchResultsScreen from './screens/SearchResultsScreen'
 import MovieDetailsScreen from './screens/MovieDetailsScreen'
+import ErrorScreen from './screens/ErrorScreen';
 import { AppLoading } from 'expo';
 import { Container, Text } from 'native-base';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
+
+import {store} from './redux/store'
+
+import {Provider} from 'react-redux'
 
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     SearchResults: SearchResultsScreen,
     MovieDetails: MovieDetailsScreen,
+    Error: ErrorScreen,
   },
   {
     initialRouteName: "Home",
@@ -38,7 +44,9 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <AppContainer />
+      <Provider store = {store}>
+        <AppContainer />
+      </Provider>
     );
   }
 }

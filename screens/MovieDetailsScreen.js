@@ -106,7 +106,7 @@ export default class MovieDetailsScreen extends React.Component {
               </CardItem>
               <CardItem>
                 <Body>
-                  <Image source={{uri: this.state.Poster}} style={{height: 200, width: 200, flex: 1}}/>
+                  <Image source={{uri: this.state.Poster}} style={{alignSelf: 'center', height: 200, width: '90%', flex: 1}}/>
                   <H2 style = {{marginTop:20,}}>Director: {this.state.Director}</H2>
                   <H3 style = {{marginTop:10,}}>Actors: {this.state.Actors}</H3>
                   <H3 style = {{marginTop:10,}}>Runtime: {this.state.Runtime}</H3>
